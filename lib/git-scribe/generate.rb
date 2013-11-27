@@ -78,7 +78,7 @@ class GitScribe
 
       generate_docinfo
       # TODO: look for custom stylesheets
-      cmd = "#{a2x_wss('epub')} -a docinfo -k --icons -r images/icons/note.png -r images/icons/caution.png -r images/icons/important.png -r images/icons/tip.png -r images/icons/warning.png -v #{BOOK_FILE}"
+      cmd = "#{a2x_wss('epub')} -a docinfo -k -v #{BOOK_FILE}"
       return false unless ex(cmd)
 
       @done['epub'] = true
