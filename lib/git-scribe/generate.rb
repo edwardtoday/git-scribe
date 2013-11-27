@@ -54,10 +54,9 @@ class GitScribe
         'admon.graphics' => 1,
         'page.width' => '7.5in',
         'page.height' => '9in',
-        'body.font.family' => "'URW Bookman L'",
-        'title.font.family' => "'URW Bookman L'",
-        'monospace.font.family' => "'LiberationMono'"
-        # 'monospace.font.family' => "'DroidSansMono'"
+        'body.font.family' => "'WenQuanYi Zen Hei'",
+        'title.font.family' => "'WenQuanYi Micro Hei'",
+        'monospace.font.family' => "'Source Code Pro'"
       }
       param = strparams.map { |k, v| "--stringparam #{k} #{v}" }.join(' ')
       cmd = "xsltproc  --nonet #{param} --output #{local('book.fo')} #{base('docbook-xsl/fo.xsl')} #{local('book.xml')}"
@@ -117,8 +116,7 @@ class GitScribe
       info "GENERATING HTML"
 
       # TODO: look for custom stylesheets
-      styledir = local('stylesheets')
-      cmd = "asciidoc -a stylesdir=#{styledir} -a theme=scribe #{BOOK_FILE}"
+      cmd = "asciidoc -a scriptsdir='javascripts' -a linkcss -a stylesdir='stylesheets' -a theme=scribe #{BOOK_FILE}"
       return false unless ex(cmd)
 
       @done['html'] = true
@@ -144,6 +142,9 @@ class GitScribe
 
       FileUtils.mkdir_p("#{dir}/stylesheets")
       FileUtils.cp_r File.join(SCRIBE_ROOT, 'stylesheets'), dir
+
+      FileUtils.mkdir_p("#{dir}/javascripts")
+      FileUtils.cp_r File.join(SCRIBE_ROOT, 'javascripts'), dir
 
       FileUtils.mkdir_p("#{dir}/images/icons")
       FileUtils.cp_r File.join(SCRIBE_ROOT, 'icons'),
