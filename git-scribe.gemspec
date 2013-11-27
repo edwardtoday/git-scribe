@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.email             = "schacon@gmail.com"
   s.authors           = [ "Scott Chacon" ]
   s.has_rdoc          = false
+  s.license			  = "MIT"
 
   s.files             = files
 
