@@ -6,8 +6,13 @@ context "scribe gen tests" do
   end
 
   test "will not respond to non-thing" do
-    assert_raise RuntimeError do
-      @scribe.gen('mofo')
+    in_temp_dir do
+      @scribe.init('t')
+      Dir.chdir('t') do
+        assert_raise RuntimeError do
+          @scribe.gen('mofo')
+        end
+      end
     end
   end
 
@@ -32,8 +37,8 @@ context "scribe gen tests" do
     in_temp_dir do
       @scribe.init('t')
       Dir.chdir('t') do
-      file = @scribe.gen('html')
-        assert_equal 'book.html', file
+        ret = @scribe.gen('html')
+        assert_equal true, ret
         out = Dir.glob('output/**/*')
         assert out.include? 'output/book.html'
         assert out.include? 'output/images'
@@ -46,13 +51,13 @@ context "scribe gen tests" do
     in_temp_dir do
       @scribe.init('t')
       Dir.chdir('t') do
-        data = @scribe.gen('site')
+        @scribe.gen('site')
         out = Dir.glob('output/**/*')
-        assert out.include? 'output/index.html'
-        assert out.include? 'output/the_first_chapter.html'
-        assert out.include? 'output/the_second_chapter.html'
-        assert out.include? 'output/images'
-        assert out.include? 'output/stylesheets/scribe.css'
+        assert out.include? 'output/site/index.html'
+        assert out.include? 'output/site/the_first_chapter.html'
+        assert out.include? 'output/site/the_second_chapter.html'
+        assert out.include? 'output/site/images'
+        assert out.include? 'output/site/stylesheets/scribe.css'
       end
     end
   end
@@ -62,7 +67,7 @@ context "scribe gen tests" do
       @scribe.init('t')
       Dir.chdir('t') do
         @scribe.gen('site')
-        html = Nokogiri::HTML(File.read('output/the_first_chapter.html'))
+        html = Nokogiri::HTML(File.read('output/site/the_first_chapter.html'))
         assert html.at_css "b:contains('char')"
       end
     end
@@ -73,8 +78,8 @@ context "scribe gen tests" do
     in_temp_dir do
       @scribe.init('t')
       Dir.chdir('t') do
-        data = @scribe.gen('pdf')
-        assert_equal data, 'book.pdf'
+        ret = @scribe.gen('pdf')
+        assert_equal true, ret
         out = Dir.glob('output/**/*')
         assert out.include? 'output/book.pdf'
       end
@@ -97,10 +102,23 @@ context "scribe gen tests" do
     in_temp_dir do
       @scribe.init('t')
       Dir.chdir('t') do
-      data = @scribe.gen('epub')
-        assert_equal 'book.epub', data
+        ret = @scribe.gen('epub')
+        assert_equal true, ret
         out = Dir.glob('output/**/*')
         assert out.include? 'output/book.epub'
+      end
+    end
+  end
+
+  test "scribe generates an epub with a cover" do
+    in_temp_dir do
+      @scribe.init('t')
+      Dir.chdir('t') do
+        ret = @scribe.gen('epub')
+        assert_equal true, ret
+        `unzip output/book.epub 2>&1 > /dev/null`
+        opf = File.read('OEBPS/content.opf')
+        assert opf.include? 'id="cover-image" href="images/cover.jpg"'
       end
     end
   end
@@ -109,10 +127,39 @@ context "scribe gen tests" do
     in_temp_dir do
       @scribe.init('t')
       Dir.chdir('t') do
-      data = @scribe.gen('mobi')
-        assert_equal data, 'book.mobi'
+        ret = @scribe.gen('mobi')
+        assert_equal true, ret
         out = Dir.glob('output/**/*')
         assert out.include? 'output/book.mobi'
+      end
+    end
+  end
+
+  test "scribe generates a mobi with a cover and TOC" do
+    in_temp_dir do
+      @scribe.init('t')
+      Dir.chdir('t') do
+        ret = @scribe.gen('mobi')
+        assert_equal true, ret
+        `unzip output/book.mobi 2>&1 > /dev/null`
+        opf = File.read('OEBPS/content.opf')
+        assert opf.include? 'id="cover-image" href="images/cover.jpg"'
+        assert opf.include? 'href="toc.html" type="toc"'
+      end
+    end
+  end
+
+  test "scribe can generate an ebook ZIP" do
+    in_temp_dir do
+      @scribe.init('t')
+      Dir.chdir('t') do
+        ret = @scribe.gen('ebook')
+        assert_equal true, ret
+        out = Dir.glob('output/**/*')
+        assert out.include? 'output/book_title/book_title.mobi'
+        assert out.include? 'output/book_title/book_title.epub'
+        assert out.include? 'output/book_title/book_title.pdf'
+        assert out.include? 'output/book_title.zip'
       end
     end
   end

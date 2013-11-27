@@ -7,6 +7,7 @@ require 'grit'
 require 'git-scribe/generate'
 require 'git-scribe/check'
 require 'git-scribe/init'
+require 'decorator'
 
 require 'fileutils'
 require 'pp'
@@ -21,7 +22,7 @@ class GitScribe
   attr_reader :info
 
   BOOK_FILE = 'book.asc'
-  OUTPUT_TYPES = ['docbook', 'html', 'pdf', 'epub', 'mobi', 'site']
+  OUTPUT_TYPES = ['docbook', 'html', 'pdf', 'epub', 'mobi', 'site', 'ebook']
   SCRIBE_ROOT = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 
   def initialize
@@ -29,6 +30,7 @@ class GitScribe
     @args = []
     @options = {}
     @config = YAML::parse(File.open(local('.gitscribe'))).transform rescue {}
+    @decorate = Decorator.new
   end
 
   ## COMMANDS ##

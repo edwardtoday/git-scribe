@@ -21,15 +21,19 @@ strong {
 	color:#000;
 }
 
-tt {
-	font-family:consolas, 'lucida console', 'bitstream vera sans mono',
-	           'courier new', monospace;
-	color:#000;
-  font-size: 8px;
+pre, tt {
+  font-family: consolas, 'lucida console', 'bitstream vera sans mono',
+	             'courier new', monospace;
+  color: #000;
+  background-color: #eee;
 }
 
 p, ul, ol, dl {
-	margin:10px 0
+	margin:10px 0px;
+}
+
+p {
+  text-indent: 0px;
 }
 
 dl {
