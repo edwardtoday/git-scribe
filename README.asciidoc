@@ -1,6 +1,14 @@
 This Fork
 ---------
 
+I forked this to add Chinese support to git-scribe.
+
+The upstream uses `a2x` with `--icons` param, which leads to encoding errors if I set the encoding to utf-8.
+
+I also merged almost all changes by @eee-c in his fork.
+
+eee-c's Fork
+============
 This fork is used to maintain my ebooks: http://spdybook.com,
 http://recipeswithbackbone.com, and http://dartforhipsters.com. It
 adds some features (page resizing, formatting tweaks, Kindle Fire
