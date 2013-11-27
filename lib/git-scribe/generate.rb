@@ -52,11 +52,11 @@ class GitScribe
         'navig.graphics' => 1,
         'admon.textlabel' => 1,
         'admon.graphics' => 1,
-        'page.width' => '7.5in',
-        'page.height' => '9in',
+        #'page.width' => '7.5in',
+        #'page.height' => '9in',
         'body.font.family' => "'WenQuanYi Zen Hei'",
         'title.font.family' => "'WenQuanYi Micro Hei'",
-        'monospace.font.family' => "'Source Code Pro'"
+        'monospace.font.family' => "'Liberation Mono'"
       }
       param = strparams.map { |k, v| "--stringparam #{k} #{v}" }.join(' ')
       cmd = "xsltproc  --nonet #{param} --output #{local('book.fo')} #{base('docbook-xsl/fo.xsl')} #{local('book.xml')}"
