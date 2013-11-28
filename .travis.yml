@@ -1,0 +1,7 @@
+deploy:
+  provider: rubygems
+  api_key:
+    secure: gkivTYDSmoRmUI++0el7Hba82i/zof4KO5PKCkVm7xt83Au+k/ZIYO8IS8Ol7xEzv4kQpVs0zCou/fF9tkGsOrRjh4TkfGQN40hhYi72KEaJG8MzGTOK2y6JQntLiDa0/g7rYgg1hUGHYviIEGfPTPNWKc602f89+Cd/4HoDEyw=
+  gem: git-scribe-qp
+  on:
+    repo: edwardtoday/git-scribe
