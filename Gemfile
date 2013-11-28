@@ -1,2 +1,2 @@
-source 'http://ruby.taobao.org'
+source :rubygems
 gemspec

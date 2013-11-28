@@ -7,13 +7,13 @@ files = `git ls-files`.
 
 # piece file back together and write...
 Gem::Specification.new do |s|
-  s.name              = "git-scribe"
+  s.name              = "git-scribe-qp"
   s.version           = GitScribe::VERSION
   s.date              = Time.now.strftime('%Y-%m-%d')
   s.summary           = "git-scribe is an authors toolkit for writing and publishing books"
-  s.homepage          = "http://github.com/schacon/git-scribe"
-  s.email             = "schacon@gmail.com"
-  s.authors           = [ "Scott Chacon" ]
+  s.homepage          = "http://github.com/edwardtoday/git-scribe"
+  s.email             = "edwardtoday@gmail.com"
+  s.authors           = [ "Scott Chacon", "Pei Qing" ]
   s.has_rdoc          = false
   s.license			  = "MIT"
 
