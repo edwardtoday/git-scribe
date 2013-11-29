@@ -7,7 +7,7 @@ The upstream uses `a2x` with `--icons` param, which leads to encoding errors if 
 
 I also merged almost all changes by @eee-c in his fork.
 
-In order to generate PDF output with Chinese characters, I specified fontface `WenQuanYi Zen Hei` for body and `WenQuanYi Micro Hei` heading. They are free fonts except for commercial purposes. I also specified monospace fontface as 'Liberation Mono'.
+In order to generate PDF output with Chinese characters, I specified fontface `WenQuanYi Zen Hei` for body and `WenQuanYi Micro Hei` heading. They are free fonts except for commercial purposes. I also specified monospace fontface as `Liberation Mono`.
 The fonts can be found and downloaded from official sites simply with some web searches. On Ubuntu, which my Travis CI box runs on to generate my books, things are easier with:
 
     $ sudo apt-get install ttf-wqy-zenhei ttf-wqy-microhei ttf-liberation
