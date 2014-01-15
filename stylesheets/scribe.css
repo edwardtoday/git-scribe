@@ -4,7 +4,7 @@
 --------------------------------------------------------------------------- */
 
 body {
-	font-family:helvetica,arial,sans-serif;
+	font-family:"Lucida Grande", Arial, Helvetica, sans-serif
 	font-size:1em;
 	line-height:1.538;
 	margin:40px auto 50px auto;
@@ -22,8 +22,7 @@ strong {
 }
 
 pre, tt {
-  font-family: consolas, 'lucida console', 'bitstream vera sans mono',
-	             'courier new', monospace;
+  font-family: Monaco, "Courier New", Courier, monospace
   color: #000;
   background-color: #eee;
 }
@@ -46,7 +45,7 @@ dt {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family:'lucida grande',georgia,verdana,helvetica,arial,sans-serif;
+	font-family:"Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif
 	font-weight:bold;
 	color:#000;
 }
